@@ -7,7 +7,7 @@ It enables you to:
 - Check NordVPN connection status  
 - Connect to VPN by specifying a **city** or **country**  
 - Trigger the automation script via **GET** or **POST** requests  
-- And you can see logs 
+- Check Logs
 
 ---
 
