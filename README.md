@@ -1,11 +1,49 @@
-# Welcome to Janeapp
-This janeapp script contains two parts seleniumbase for automation and FastAPI for managing API access. User can check NordVPN status, connnect to VPN by entering city or country name, GET or POST call to automation script  to start automation.
-## How Automation Script is Working
-To start automation script user need to provide web portal url, username  and password for [https://eddinscounseling.janeapp.com/admin](https://eddinscounseling.janeapp.com/admin). After recieving automation call script will first varify if nordvpn connected or not. If not connected it will reject call and instruct user to first connect to VPN.
-If VPN is connected it will start automation script using seleniumgrid on port 4444.
-It will  start a headless chrome session and login to janeapp and then  it  will open each url one by one set starting and ending date and download report file. All the downloaded report files will be copied to "downloaded_files" folder.
-Once all the urls are processed it will upload all the csv files to Supabase database using API endpoint [https://mmayynuyhfvbcgofgnma.storage.supabase.co/storage/v1/s3](https://mmayynuyhfvbcgofgnma.storage.supabase.co/storage/v1/s3) it will create a bucket with URL + Username and upload files to this bucket (folder).
-After uploading all the files it will delete all the local csv files.
+
+# 📊 JaneApp Automation & API
+
+This project integrates **SeleniumBase** for automation and **FastAPI** for managing API access.  
+It enables you to:
+
+- Check NordVPN connection status  
+- Connect to VPN by specifying a **city** or **country**  
+- Trigger the automation script via **GET** or **POST** requests  
+- And you can see logs 
+
+---
+
+##  How the Automation Script Works
+
+1. **User Input**  
+   The user must provide the **JaneApp portal URL**, **username**, and **password** for  
+   [https://eddinscounseling.janeapp.com/admin](https://eddinscounseling.janeapp.com/admin).  
+
+2. **VPN Verification**  
+   - If **NordVPN is not connected**, the request is rejected with an instruction to connect first.  
+   - If **VPN is connected**, the script proceeds to automation.  
+
+3. **Automation Execution**  
+   - Runs on **Selenium Grid** (port `4444`) using a **headless Chrome session**  
+   - Logs into JaneApp with the provided credentials  
+   - Iterates through all URLs, sets **start & end dates**, and downloads the corresponding **report files**  
+
+4. **File Handling**  
+   - All downloaded reports are stored temporarily in the `downloaded_files` folder  
+
+5. **Uploading to Supabase**  
+   - After processing, all CSV files are uploaded to Supabase at:  
+     [Supabase Storage API](https://mmayynuyhfvbcgofgnma.storage.supabase.co/storage/v1/s3)  
+   - A **bucket** is created using the pattern:  
+     ```
+     {portal_url}_{username}
+     ```  
+   - Files are uploaded into this bucket (as a folder).  
+
+6. **Cleanup**  
+   - Once upload is complete, all local CSV files are deleted to free up space.  
+
+---
+
+✅ This ensures reports are **automated, securely uploaded, and organized** without manual intervention.
 
   
 
