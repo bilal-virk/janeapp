@@ -1,5 +1,5 @@
 
-# 📊 JaneApp Automation & API
+# JaneApp Automation & API
 
 This project integrates **SeleniumBase** for automation and **FastAPI** for managing API access.  
 It enables you to:
